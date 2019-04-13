@@ -34,6 +34,19 @@
 
 	<!-- 配置org.mybatis.spring.SqlSessionFactoryBean 创建出SqlSessionFactory对象 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 注入分页插件 -->
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageInterceptor">
+					<property name="properties">
+						<!-- config params as the following -->
+						<value>
+							param1=value1
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
 		<!-- 注入连接池 -->
 		<property name="dataSource" ref="dataSource" />
 		<!-- 配置别名 -->
@@ -78,9 +91,9 @@
 	</tx:advice>
 
 
-	<!-- spring aop 切面配置 execution(* cn.yq.ssm.service..*.*(..)) -->
+	<!-- spring aop 切面配置 execution(* cn.yq.oa.service..*.*(..)) -->
 	<aop:config>
-		<aop:pointcut expression="execution(* cn.yq.ssm.serviceImp..*.*(..))"
+		<aop:pointcut expression="execution(* cn.yq.oa.serviceImp..*.*(..))"
 			id="pt" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="pt" />
 	</aop:config>

@@ -70,4 +70,11 @@ public class SysUser {
     public void setLocked(Integer locked) {
         this.locked = locked;
     }
+
+	@Override
+	public String toString() {
+		return "SysUser [id=" + id + ", usercode=" + usercode + ", username=" + username + ", password=" + password
+				+ ", roleId=" + roleId + ", salt=" + salt + ", locked=" + locked + "]";
+	}
+    
 }

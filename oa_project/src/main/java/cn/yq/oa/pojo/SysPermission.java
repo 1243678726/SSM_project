@@ -1,16 +1,19 @@
 package cn.yq.oa.pojo;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SysPermission {
     private Integer id;
 
     private String name;
 
     private String type;
-
+    @JsonIgnore
     private String url;
-
     private String percode;
-
+    @JsonProperty("pId")
     private Long parentid;
 
     private String sortstring;

@@ -1,5 +1,7 @@
 package cn.yq.oa.pojo;
 
+import java.util.List;
+
 public class SysRole {
     private Integer roeId;
 
@@ -8,8 +10,18 @@ public class SysRole {
     private String remark;
 
     private Integer available;
+    
+    private Integer[] permissionIds;
 
-    public Integer getRoeId() {
+    public Integer[] getPermissionIds() {
+		return permissionIds;
+	}
+
+	public void setPermissionIds(Integer[] permissionIds) {
+		this.permissionIds = permissionIds;
+	}
+
+	public Integer getRoeId() {
         return roeId;
     }
 
