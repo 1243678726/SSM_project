@@ -25,4 +25,15 @@ public interface CustomPermissionMapper {
 	 * @return
 	 */
 	int insertRolePermissionByRoleId(@Param("roleId")Integer roleId,@Param("permissionId")Integer PermissionId);
-}
+	/**
+	 * 查权限
+	 * @param roleId
+	 * @return
+	 */
+	/**
+	 * 根据角色id查询出对应的所有的权限表达式
+	 * @param roleId
+	 * @return
+	 */
+	List<String> selectPermissionsByRoleid(@Param("roleId")Integer roleId);
+	}

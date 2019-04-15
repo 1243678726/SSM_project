@@ -4,6 +4,8 @@ import cn.yq.oa.pojo.SysUser;
 import cn.yq.oa.pojo.SysUserExample;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 public interface SysUserMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -18,4 +20,6 @@ public interface SysUserMapper {
     int updateByPrimaryKeySelective(SysUser record);
 
     int updateByPrimaryKey(SysUser record);
+
+	SysUser selectByUserCode(@Param("usercode")String usercode);
 }

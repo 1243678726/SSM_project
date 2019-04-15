@@ -17,5 +17,4 @@ public interface SysRolePermissionMapper {
 
     int updateByPrimaryKeySelective(SysRolePermission record);
 
-    int updateByPrimaryKey(SysRolePermission record);
 }

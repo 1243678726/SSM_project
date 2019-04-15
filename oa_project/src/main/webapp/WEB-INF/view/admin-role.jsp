@@ -33,7 +33,7 @@
 				<th scope="col" colspan="6">角色管理</th>
 			</tr>
 			<tr class="text-c">
-				<th width="25"><input type="checkbox" value="" name=""></th>
+				<th width="25"><input type="checkbox" id="all" value="" name=""></th>
 				<th width="40">ID</th>
 				<th width="200">角色名</th>
 				<th>用户列表</th>
@@ -76,7 +76,7 @@ function showData(users){
 		//分别取出没一行数据
 		var u = users[i];
 		html +="<tr class='text-c'>";
-		html +="<td><input type='checkbox' value='1' name=''></td>";
+		html +="<td><input type='checkbox' id='delete' value='1' name=''></td>";
 		html +="<td>"+u.id+"</td>";
 		html +="<td>"+u.usercode+"</td>";
 		html +="<td>"+u.username+"</td>";
@@ -166,6 +166,18 @@ function admin_role_del(id){
  		window.menulists("${pageContext.request.contextPath}/user/list.do",1);
  	});
 }
+
+
+function datadel(){
+		//批量获取要删除的id
+		var del=$('#delete').val();
+		alert(del+1)
+	
+}
+
+
+
+
 </script>
 </body>
 </html>

@@ -2,6 +2,8 @@ package cn.yq.oa.test;
 
 
 
+import static org.junit.Assert.*;
+
 import java.util.List;
 
 import org.junit.Test;
@@ -48,5 +50,11 @@ public class UserTest {
 		}
 		
 		
+	}
+	
+	@Test
+	public void testNameselect() throws Exception {
+		SysUser user = service.selectByUserCode("admin");
+		System.out.println(user);
 	}
 }

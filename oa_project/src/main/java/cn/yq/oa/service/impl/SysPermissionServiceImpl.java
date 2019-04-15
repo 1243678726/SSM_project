@@ -67,4 +67,10 @@ public class SysPermissionServiceImpl implements SysPermissionService {
 		return customPermissionMapper.selectPermissionIdsByRoleId(roleId);
 	}
 
+	@Override
+	public List<String> selectPermissionsByRoleid(Integer roleId) {
+		// TODO Auto-generated method stub
+		return customPermissionMapper.selectPermissionsByRoleid(roleId);
+	}
+
 }

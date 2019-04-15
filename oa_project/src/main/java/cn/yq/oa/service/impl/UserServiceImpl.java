@@ -38,5 +38,9 @@ public class UserServiceImpl implements UserService {
 	public int insertSelective(SysUser record) {
 		return mapper.insertSelective(record);
 	}
+	@Override
+	public SysUser selectByUserCode(String usercode) {
+		return mapper.selectByUserCode(usercode);
+	}
 
 }

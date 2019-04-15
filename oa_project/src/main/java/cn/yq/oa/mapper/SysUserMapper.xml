@@ -10,6 +10,12 @@
     <result column="salt" jdbcType="VARCHAR" property="salt" />
     <result column="locked" jdbcType="INTEGER" property="locked" />
   </resultMap>
+  
+    <!-- 根据usercode查询出对应的用户 -->
+  <select id="selectByUserCode" resultMap="BaseResultMap">
+  	select * from sys_user where usercode = #{usercode}
+  </select>
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

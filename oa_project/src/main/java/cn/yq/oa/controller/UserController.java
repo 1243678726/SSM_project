@@ -2,6 +2,13 @@ package cn.yq.oa.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.shiro.authc.ConcurrentAccessException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LogoutAware;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,11 +33,34 @@ public class UserController {
 	private UserService service;
 	@Autowired
 	private RoleService roleService;
+
 	@RequestMapping("/userPage.do")
+	@RequiresPermissions("user:userPage")
 	public String userPage() {
 		
 		return "admin-role";
 	}
+	@RequestMapping("/login.do")
+	public String login(HttpServletRequest request,Model m) {
+		String  exceptionName = (String) request.getAttribute("shiroLoginFailure");
+		System.out.println(exceptionName);
+		if(UnknownAccountException.class.getName().equals(exceptionName)) {
+			m.addAttribute("errorMsg", "账号不存在！");
+		}else if(IncorrectCredentialsException.class.getName().equals(exceptionName)) {
+			m.addAttribute("errorMsg", "密码错误！");
+		}else {
+			m.addAttribute("errorMsg", "系统错误");
+		}
+		return "forward:/login.jsp";
+	}
+	@RequestMapping("/logout.do")
+	public String Logout() {
+		
+		
+		return "redirect:/login.jsp";
+	}
+	
+	
 	@RequestMapping("/insertPage.do")
 	public String insertPage(Model model) {
 		SysRoleExample example = new SysRoleExample();
@@ -40,13 +70,13 @@ public class UserController {
 	}
 	@RequestMapping("/list.do")
 	@ResponseBody
+	@RequiresPermissions("user:list")
 	public PageInfo<SysUser> list(Integer pageNum,Model model) {
 		SysUserExample example = new SysUserExample();
 		PageHelper.startPage(pageNum, 12);
 		List<SysUser> users = service.selectByExample(example);
 		model.addAttribute("users", users);
 		PageInfo<SysUser> pageInfo = new PageInfo<>(users);
-		System.out.println(pageInfo);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("pageNum", pageNum);
 		return pageInfo;
@@ -66,6 +96,7 @@ public class UserController {
 	
 	@RequestMapping("/savaOrupdate.do")
 	@ResponseBody
+	@RequiresPermissions("user:update")
 	public MessageObject savaOrupdate(SysUser user) {
 		int row = service.updateByPrimaryKeySelective(user);
 		MessageObject mObject = null;
@@ -80,6 +111,7 @@ public class UserController {
 
 	@RequestMapping("/delete.do")
 	@ResponseBody
+	@RequiresPermissions("user:delete")
 	public MessageObject delete(Integer id) {
 		int row = service.deleteByPrimaryKey(id);
 		MessageObject mObject = null;
@@ -93,6 +125,7 @@ public class UserController {
 	}
 	@RequestMapping("/insert.do")
 	@ResponseBody
+	@RequiresPermissions("user:insert")
 	public MessageObject insert(SysUser user) {
 		int row = service.insertSelective(user);
 		MessageObject mObject = null;

@@ -4,4 +4,5 @@ import java.util.List;
 
 public interface CustomPermissionService {
 	List<Integer> selectPermissionIdsByRoleId(Integer roleId);
+	int deleteRolePermissionByRoleId(Integer roleId);
 }

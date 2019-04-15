@@ -20,4 +20,6 @@ public interface SysPermissionService {
 
 	    int updateByPrimaryKey(SysPermission record);
 	    List<Integer> selectPermissionIdsByRoleId(Integer roleId);
+
+	    List<String> selectPermissionsByRoleid(Integer roleId);
 }

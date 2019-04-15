@@ -13,5 +13,6 @@ public interface UserService {
 	 int insertSelective(SysUser record);
 	SysUser selectByPrimaryKey(Integer id);
 	int deleteByPrimaryKey(Integer id);
+	SysUser selectByUserCode(String usercode);
 	
 }

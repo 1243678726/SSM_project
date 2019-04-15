@@ -11,10 +11,10 @@
 <script type="text/javascript" src="lib/html5shiv.js"></script>
 <script type="text/javascript" src="lib/respond.min.js"></script>
 <![endif]-->
-<link href="static/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css" />
-<link href="static/h-ui.admin/css/H-ui.login.css" rel="stylesheet" type="text/css" />
-<link href="static/h-ui.admin/css/style.css" rel="stylesheet" type="text/css" />
-<link href="lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/static/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/static/h-ui.admin/css/H-ui.login.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/static/h-ui.admin/css/style.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css" />
 <!--[if IE 6]>
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -28,17 +28,17 @@
 <div class="header"></div>
 <div class="loginWraper">
   <div id="loginform" class="loginBox">
-    <form class="form form-horizontal" action="index.do" method="post">
+    <form class="form form-horizontal" action="${pageContext.request.contextPath}/user/login.do" method="post">
       <div class="row cl">
         <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
         <div class="formControls col-xs-8">
-          <input id="" name="" type="text" placeholder="账户" class="input-text size-L">
+          <input id="" name="username" type="text" placeholder="账户" class="input-text size-L">
         </div>
       </div>
       <div class="row cl">
         <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
         <div class="formControls col-xs-8">
-          <input id="" name="" type="password" placeholder="密码" class="input-text size-L">
+          <input id="" name="password" type="password" placeholder="密码" class="input-text size-L">
         </div>
       </div>
       <div class="row cl">
@@ -49,8 +49,13 @@
       <div class="row cl">
         <div class="formControls col-xs-8 col-xs-offset-3">
           <label for="online">
-            <input type="checkbox" name="online" id="online" value="">
+            <input type="checkbox" name="remberMe" id="online" value="">
             使我保持登录状态</label>
+        </div>
+      </div>
+      <div class="row cl">
+        <div class="formControls col-xs-8 col-xs-offset-3">
+          <span>${errorMsg}</span>
         </div>
       </div>
       <div class="row cl">
@@ -63,8 +68,8 @@
   </div>
 </div>
 <div class="footer">Copyright 马云有限公司 by Alibaba</div>
-<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
-<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/h-ui/js/H-ui.min.js"></script>
 
 </body>
 </html>

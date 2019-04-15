@@ -18,4 +18,10 @@ public class CustomPermissionService implements cn.yq.oa.service.CustomPermissio
 		return customPermissionMapper.selectPermissionIdsByRoleId(roleId);
 	}
 
+	@Override
+	public int deleteRolePermissionByRoleId(Integer roleId) {
+		// TODO Auto-generated method stub
+		return customPermissionMapper.deleteRolePermissionByRoleId(roleId);
+	}
+
 }

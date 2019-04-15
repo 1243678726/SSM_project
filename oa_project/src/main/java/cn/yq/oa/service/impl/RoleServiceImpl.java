@@ -19,7 +19,6 @@ public class RoleServiceImpl implements RoleService{
 	
 	@Override
 	public int deleteByPrimaryKey(Integer roeId) {
-	
 		return roleMapper.deleteByPrimaryKey(roeId);
 	}
 

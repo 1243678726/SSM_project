@@ -2,6 +2,7 @@ package cn.yq.oa.controller;
 
 import java.util.List;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +34,7 @@ public class RoleController {
 	
 	//进入到页面
 	@RequestMapping("/rolePage.do")
+	@RequiresPermissions("role:rolePage")
 	public String list() {
 		
 		return "admin-permission";
@@ -40,6 +42,7 @@ public class RoleController {
 	//Ajax发送请求
 	@RequestMapping("/list.do")
 	@ResponseBody
+	@RequiresPermissions("role:list")
 	public PageInfo<SysRole> rolelist(Integer pageNum) {
 		PageHelper.startPage(pageNum, 10);
 		SysRoleExample example = new SysRoleExample();
@@ -78,6 +81,7 @@ public class RoleController {
 	}
 	@RequestMapping("/update.do")
 	@ResponseBody
+	@RequiresPermissions("role:update")
 	public MessageObject updateRole(SysRole role) {
 		
 		System.out.println(role);
@@ -94,8 +98,10 @@ public class RoleController {
 	
 	@RequestMapping("/delete.do")
 	@ResponseBody
+	@RequiresPermissions("role:delete")
 	public MessageObject deleteRole(Integer id) {
 		int row = roleService.deleteByPrimaryKey(id);
+		customPermissionService.deleteRolePermissionByRoleId(id);
 		MessageObject mObject=null;
 		if(row>0) {
 			mObject = new MessageObject(1, "删除成功");
