@@ -15,6 +15,15 @@
   <select id="selectByUserCode" resultMap="BaseResultMap">
   	select * from sys_user where usercode = #{usercode}
   </select>
+  <!-- 批量删除用户 -->
+  <delete id="deleteManyUser" parameterType="Integer">
+        delete from sys_user where 
+        <foreach item="chk_value" collection="array" open="id in ("
+            separator="," close=")">
+            #{chk_value}
+        </foreach>
+    </delete>
+
   
   <sql id="Example_Where_Clause">
     <where>

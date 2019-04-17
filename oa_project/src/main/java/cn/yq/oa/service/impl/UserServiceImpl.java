@@ -42,5 +42,10 @@ public class UserServiceImpl implements UserService {
 	public SysUser selectByUserCode(String usercode) {
 		return mapper.selectByUserCode(usercode);
 	}
+	@Override
+	public int deleteManyUser(Integer[] chk_value) {
+		// TODO Auto-generated method stub
+		return mapper.deleteManyUser(chk_value);
+	}
 
 }

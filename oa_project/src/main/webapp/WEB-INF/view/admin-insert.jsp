@@ -84,6 +84,7 @@
 <script type="text/javascript">
 function update(){
 	var formdata = $('#form-admin-add').serialize();
+	
 	$.post("${pageContext.request.contextPath}/user/insert.do",formdata,function(result){
 		if(result.id==1){
 			layer.msg(result.message,{icon:1,time:1000});

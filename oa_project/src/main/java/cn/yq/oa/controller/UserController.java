@@ -4,15 +4,18 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.authc.ConcurrentAccessException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LogoutAware;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
@@ -48,8 +51,8 @@ public class UserController {
 			m.addAttribute("errorMsg", "账号不存在！");
 		}else if(IncorrectCredentialsException.class.getName().equals(exceptionName)) {
 			m.addAttribute("errorMsg", "密码错误！");
-		}else {
-			m.addAttribute("errorMsg", "系统错误");
+		}else if(exceptionName==null){
+			m.addAttribute("errorMsg", "请输入账号密码");
 		}
 		return "forward:/login.jsp";
 	}
@@ -137,6 +140,17 @@ public class UserController {
 		return mObject;
 	}
 	
-		
+	@RequestMapping("/allDelete.do")
+	@ResponseBody
+	public MessageObject allDelete(@RequestParam("ids[]") Integer [] chk_value) {
+		int row = service.deleteManyUser(chk_value);
+		MessageObject mo = null;
+		if(row>1) {
+			mo = new MessageObject(1,"删除成功");
+		}else {
+			mo = new MessageObject(0,"删除失败");
+		}
+		return mo;
+	}
 	
 }

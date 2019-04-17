@@ -39,6 +39,11 @@ public class RoleController {
 		
 		return "admin-permission";
 	}
+	@RequestMapping("/roleadd.do")
+	public String roleadd() {
+		
+		return "role-add";
+	}
 	//Ajax发送请求
 	@RequestMapping("/list.do")
 	@ResponseBody
@@ -102,6 +107,19 @@ public class RoleController {
 	public MessageObject deleteRole(Integer id) {
 		int row = roleService.deleteByPrimaryKey(id);
 		customPermissionService.deleteRolePermissionByRoleId(id);
+		MessageObject mObject=null;
+		if(row>0) {
+			mObject = new MessageObject(1, "删除成功");
+		}else {
+			mObject = new MessageObject(0, "删除失败");
+			
+		}
+		return mObject;
+	}
+	@RequestMapping("/insert.do")
+	@ResponseBody
+	public MessageObject insert(SysRole role) {
+		int row = roleService.insertSelective(role);
 		MessageObject mObject=null;
 		if(row>0) {
 			mObject = new MessageObject(1, "删除成功");

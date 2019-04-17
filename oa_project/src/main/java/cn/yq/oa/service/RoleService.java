@@ -11,4 +11,5 @@ public interface RoleService {
 	List<SysRole> selectByExample(SysRoleExample example);
 	int updateByPrimaryKey(SysRole record);
 	int updateByPrimaryKeySelective(SysRole record);
+	int insertSelective(SysRole record);
 }

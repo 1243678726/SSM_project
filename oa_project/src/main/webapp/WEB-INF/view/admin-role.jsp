@@ -54,7 +54,7 @@
 		</tbody>
 		
 	</table>
-	<span id="page"></span>
+	
 	<div id="userPage"></div>
 </div>
 <!--_footer 作为公共模版分离出去-->
@@ -76,7 +76,7 @@ function showData(users){
 		//分别取出没一行数据
 		var u = users[i];
 		html +="<tr class='text-c'>";
-		html +="<td><input type='checkbox' id='delete' value='1' name=''></td>";
+		html +="<td><input type='checkbox' id='delete' value='"+u.id+"' name='delete'></td>";
 		html +="<td>"+u.id+"</td>";
 		html +="<td>"+u.usercode+"</td>";
 		html +="<td>"+u.username+"</td>";
@@ -163,18 +163,45 @@ function admin_role_del(id){
 			},
 			
 		});
- 		window.menulists("${pageContext.request.contextPath}/user/list.do",1);
+		var curr = $(".laypage_curr").text();
+ 		window.menulists("${pageContext.request.contextPath}/user/list.do",curr);
  	});
 }
 
 
 function datadel(){
 		//批量获取要删除的id
-		var del=$('#delete').val();
-		alert(del+1)
-	
-}
+		layer.confirm("角色删除须谨慎，确认要删除吗？",function(index){
+			var chk_value = [];//定义一个数组
+	        //利用将name等于delete的多选按钮得到
+	        $("input[name='delete']:checked").each(function() {
+	        //将选中额数据存到数组里
+	        chk_value.push($(this).val());
+	        console.log(chk_value)
+	        });
+	        if (chk_value.length == 0) {
+	            alert("你还没有选择任何内容！");
+	        }
+	        if (chk_value.length > 0) {
+	        	//传统方法
+	           // location.href = "${pageContext.request.contextPath}/user/allDelete.do?chk_value=" + chk_value;
+	        	$.ajax({  
+	        	    url: '${pageContext.request.contextPath}/user/allDelete.do',  
+	        	    data: {"ids":chk_value},
+	        	    dataType:"json",  
+	        	    type: "POST",  
+	        	    success: function (data) {  
+	        	    	layer.msg(data.message,{icon:1,time:1000});
+	        	    }  
+	        	});
+	        	var curr = $(".laypage_curr").text();
+	     		window.menulists("${pageContext.request.contextPath}/user/list.do",curr);
+	        }
+		})
+		
+        
 
+}
 
 
 

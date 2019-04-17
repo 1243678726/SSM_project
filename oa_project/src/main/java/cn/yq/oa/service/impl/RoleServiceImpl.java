@@ -53,4 +53,16 @@ public class RoleServiceImpl implements RoleService{
 		return roleMapper.updateByPrimaryKeySelective(record);
 	}
 
+	@Override
+	public int insertSelective(SysRole record) {
+		int row = roleMapper.insertSelective(record);
+		if(row==1) {
+			Integer[] permissionIds = record.getPermissionIds();
+			for (Integer permissions : permissionIds) {
+				customPermissionMapper.insertRolePermissionByRoleId(record.getRoeId(), permissions);
+			}
+		}
+		return row;
+	}
+
 }

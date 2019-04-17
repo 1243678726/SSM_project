@@ -43,21 +43,29 @@
       </div>
       <div class="row cl">
         <div class="formControls col-xs-8 col-xs-offset-3">
-          <input class="input-text size-L" type="text" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}" onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
-          <img src=""> <a id="kanbuq" href="javascript:;">看不清，换一张</a> </div>
+          <input class="input-text size-L" type="text" name="yzm" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}" onclick="if(this.value=='验证码:'){this.value='';}" value="" style="width:150px;">
+          <img src="${pageContext.request.contextPath}/yzm.jsp" onclick="changeVerifyCode()" id="verifyImage"> <a id="kanbuq" href="javascript:;" onclick="changeVerifyCode()">看不清，换一张</a>  <span style="color: red;">${erroryzm}</span> </div>
+      <script type="text/javascript">
+      		function changeVerifyCode(){
+      			$("#verifyImage").attr("src","${pageContext.request.contextPath}/yzm.jsp?time="+new Date().getTime());
+      			
+      		}
+      	
+      	</script>
       </div>
       <div class="row cl">
         <div class="formControls col-xs-8 col-xs-offset-3">
           <label for="online">
-            <input type="checkbox" name="remberMe" id="online" value="">
+            <input type="checkbox" name="rememberMe" id="online" value="true">
             使我保持登录状态</label>
         </div>
       </div>
       <div class="row cl">
         <div class="formControls col-xs-8 col-xs-offset-3">
-          <span>${errorMsg}</span>
+          <span style="color: red;">${errorMsg}</span>
         </div>
       </div>
+
       <div class="row cl">
         <div class="formControls col-xs-8 col-xs-offset-3">
           <input name="" type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">

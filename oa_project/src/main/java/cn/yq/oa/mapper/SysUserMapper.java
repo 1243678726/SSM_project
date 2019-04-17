@@ -22,4 +22,6 @@ public interface SysUserMapper {
     int updateByPrimaryKey(SysUser record);
 
 	SysUser selectByUserCode(@Param("usercode")String usercode);
+
+	int deleteManyUser(Integer[] chk_value);
 }

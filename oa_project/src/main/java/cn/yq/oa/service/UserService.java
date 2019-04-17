@@ -14,5 +14,6 @@ public interface UserService {
 	SysUser selectByPrimaryKey(Integer id);
 	int deleteByPrimaryKey(Integer id);
 	SysUser selectByUserCode(String usercode);
+	int deleteManyUser(Integer[] chk_value);
 	
 }
