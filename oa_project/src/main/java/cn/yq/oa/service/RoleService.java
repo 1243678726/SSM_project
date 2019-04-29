@@ -13,3 +13,4 @@ public interface RoleService {
 	int updateByPrimaryKeySelective(SysRole record);
 	int insertSelective(SysRole record);
 }
+								

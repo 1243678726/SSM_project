@@ -39,8 +39,8 @@
 	</bean>
 
 	<!-- 配置自定义的表单认证过滤器 -->
-<bean id="myFormAutnenticationFilter" class="cn.yq.oa.filter.MyFormAuthenticationFilter"/>
-	
+	<bean id="myFormAutnenticationFilter" class="cn.yq.oa.filter.MyFormAuthenticationFilter" />
+
 
 
 
@@ -52,7 +52,7 @@
 				<entry key="authc" value-ref="myFormAutnenticationFilter" />
 			</map>
 		</property>
-		
+
 		<!-- 注入shiro安全管理器 -->
 		<property name="securityManager" ref="securityManager" />
 		<property name="loginUrl" value="/user/login.do" />
@@ -93,18 +93,18 @@
 		<property name="cookie">
 			<bean class="org.apache.shiro.web.servlet.SimpleCookie">
 				<!-- 使用构造器设置cookie名称 -->
-				<constructor-arg value="rememberMe"/>
-			
+				<constructor-arg value="rememberMe" />
+
 				<!-- 设置最大有效期 :单位秒 -->
-				<property name="maxAge" value="#{3600 * 24 * 7}"/>
-				
+				<property name="maxAge" value="#{3600 * 24 * 7}" />
+
 				<!-- 保存到本地Cookie的名称 -->
 				<!-- <property name="name" value="rememberMe"/> -->
 			</bean>
 		</property>
-		
+
 	</bean>
-	
+
 	<!-- 配置Ehcache -->
 	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
 		<property name="cacheManagerConfigFile" value="classpath:shiro-Ehcache.xml" />

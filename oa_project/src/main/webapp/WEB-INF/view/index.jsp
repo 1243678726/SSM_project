@@ -114,8 +114,12 @@
 			<dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
+				<shiro:hasPermission name="user:userPage">
 					<li><a data-href="${pageContext.request.contextPath}/user/userPage.do" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="role:rolePage">
 					<li><a data-href="${pageContext.request.contextPath}/role/rolePage.do" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
+					</shiro:hasPermission>
 					<li><a data-href="admin-list.html" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
 			</ul>
 		</dd>

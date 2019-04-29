@@ -45,7 +45,7 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>密码：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="password" class="input-text" autocomplete="off"  placeholder="确认新密码" id="password" name="password">
+			<input type="password" class="input-text" autocomplete="off"  placeholder="确认新密码" id="adminName" name="password">
 		</div>
 	</div>
 	
@@ -84,15 +84,22 @@
 <script type="text/javascript">
 function update(){
 	var formdata = $('#form-admin-add').serialize();
+	var value = $('#adminName').val();
+	if(value.length==0){
+		alert("输入框不能为空！")
+	}else{
+		$.post("${pageContext.request.contextPath}/user/insert.do",formdata,function(result){
+			if(result.id==1){
+				layer.msg(result.message,{icon:1,time:1000});
+			}
+			var index = parent.layer.getFrameIndex(window.name);
+			window.parent.location.reload();
+			parent.layer.close(index);
+		})
+	}
+		
 	
-	$.post("${pageContext.request.contextPath}/user/insert.do",formdata,function(result){
-		if(result.id==1){
-			layer.msg(result.message,{icon:1,time:1000});
-		}
-		var index = parent.layer.getFrameIndex(window.name);
-		window.parent.location.reload();
-		parent.layer.close(index);
-	})
+	
 }
 
 

@@ -192,7 +192,7 @@ function datadel(){
 	        	    type: "POST",  
 	        	    success: function (data) {  
 	        	    	layer.msg(data.message,{icon:1,time:1000});
-	        	    }  
+	        	    },  
 	        	});
 	        	var curr = $(".laypage_curr").text();
 	     		window.menulists("${pageContext.request.contextPath}/user/list.do",curr);
